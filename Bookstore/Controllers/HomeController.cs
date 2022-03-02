@@ -38,7 +38,7 @@ namespace Bookstore.Controllers
                     CurrentPage = pageNum
                 }
             };
-           
+
             return View(x);
         }
     }
