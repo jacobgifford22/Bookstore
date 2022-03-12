@@ -60,7 +60,7 @@ namespace Bookstore.Migrations
                     b.Property<long?>("BookId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("PurchaseId")
+                    b.Property<int?>("OrderId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Quantity")
@@ -70,14 +70,14 @@ namespace Bookstore.Migrations
 
                     b.HasIndex("BookId");
 
-                    b.HasIndex("PurchaseId");
+                    b.HasIndex("OrderId");
 
                     b.ToTable("CartLineItem");
                 });
 
-            modelBuilder.Entity("Bookstore.Models.Purchase", b =>
+            modelBuilder.Entity("Bookstore.Models.Order", b =>
                 {
-                    b.Property<int>("PurchaseId")
+                    b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -106,7 +106,7 @@ namespace Bookstore.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("PurchaseReceived")
+                    b.Property<bool>("OrderShipped")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("State")
@@ -117,9 +117,9 @@ namespace Bookstore.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("PurchaseId");
+                    b.HasKey("OrderId");
 
-                    b.ToTable("Purchases");
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Bookstore.Models.CartLineItem", b =>
@@ -128,9 +128,9 @@ namespace Bookstore.Migrations
                         .WithMany()
                         .HasForeignKey("BookId");
 
-                    b.HasOne("Bookstore.Models.Purchase", null)
+                    b.HasOne("Bookstore.Models.Order", null)
                         .WithMany("Lines")
-                        .HasForeignKey("PurchaseId");
+                        .HasForeignKey("OrderId");
                 });
 #pragma warning restore 612, 618
         }
