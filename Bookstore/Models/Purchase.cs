@@ -37,5 +37,8 @@ namespace Bookstore.Models
         public string Country { get; set; }
 
         public bool Gift { get; set; }
+
+        [BindNever]
+        public bool PurchaseReceived { get; set; }
     }
 }
