@@ -1,13 +1,18 @@
-﻿<!DOCTYPE html>
+﻿@{
+    Layout = null;
+}
+
+@model LoginModel
 
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewData["Title"]</title>
+    <title>Bookstore Login</title>
     <link href="~/lib/css/bootstrap.min.css" rel="stylesheet" />
-    <script src="~/lib/jquery/jquery.js"></script>
-    <script src="~/lib/js/bootstrap.min.js"></script>
+
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-black border-bottom box-shadow mb-3">
@@ -31,8 +36,30 @@
         </nav>
     </header>
 
-    <div class="row m-1 p-1">
-         @RenderBody()
+    <div class="text-danger" asp-validation-summary="All"></div>
+
+    <div class="m-2">
+        <form method="post" asp-controller="Account" asp-action="Login">
+
+            <div class="form-group">
+                <label asp-for="Username">Username:</label>
+                <input asp-for="Username" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password">Password:</label>
+                <input asp-for="Password" class="form-control" type="password" />
+            </div>
+
+            <br />
+            <button class="btn btn-primary" type="submit">Log In</button>
+
+            <input type="hidden" asp-for="ReturnUrl" />
+
+        </form>
     </div>
+    
+
 </body>
+
 </html>
